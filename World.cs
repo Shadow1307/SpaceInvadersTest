@@ -117,7 +117,7 @@ namespace TestingTask
             }
 
             double bCoefficient = Vector3.Dot(relativePosition, relativeVelocity);
-            double cCoefficient = (relativePosition.LengthSquared() - Math.Pow(a.BoundingRadius + b.BoundingRadius, 2));
+            float cCoefficient = relativePosition.LengthSquared() - (a.BoundingRadius + b.BoundingRadius) * (a.BoundingRadius + b.BoundingRadius);
 
             double discriminant = bCoefficient * bCoefficient - aCoefficient * cCoefficient;
 
