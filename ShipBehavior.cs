@@ -25,7 +25,6 @@ namespace TestingTask
                 return;
 
             //Get asteroids near me.
-            Ship.World.Query(BoundingBox, );
             //get "best"
             //Can I shoot "best"? Using guninfo.
 

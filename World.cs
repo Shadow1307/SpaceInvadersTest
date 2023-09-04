@@ -96,10 +96,51 @@ namespace TestingTask
         /// </summary>
         public float PreciseCollision(WorldObject a, WorldObject b)
         {
-            //Calculate if world object a overlaps world object b
 
+            // Calculate relative position and relative velocity
+            Vector3 relativePosition = a.Position - b.Position;
+            Vector3 relativeVelocity = a.LinearVelocity - b.LinearVelocity;
 
-            return float.PositiveInfinity;
+            float aCoefficient = relativeVelocity.LengthSquared();
+            if (aCoefficient == 0)
+            {
+                // Objects are not moving relative to each other, no collision will occur
+                return float.PositiveInfinity;
+            }
+
+            float bCoefficient = Vector3.Dot(relativePosition, relativeVelocity);
+            float cCoefficient = (float)(relativePosition.LengthSquared() - Math.Pow(a.BoundingRadius + b.BoundingRadius, 2));
+
+            float discriminant = bCoefficient * bCoefficient - aCoefficient * cCoefficient;
+
+            if (discriminant < 0)
+            {
+                return float.PositiveInfinity;
+            }
+
+            float sqrtDiscriminant = (float)Math.Sqrt(discriminant);
+
+            // Calculate both possible collision times
+            float t1 = (-bCoefficient + sqrtDiscriminant) / aCoefficient;
+            float t2 = (-bCoefficient - sqrtDiscriminant) / aCoefficient;
+
+            // Return the minimum positive time to collision
+            if (t1 > 0 && t2 > 0)
+            {
+                return Math.Min(t1, t2);
+            }
+            else if (t1 > 0)
+            {
+                return t1;
+            }
+            else if (t2 > 0)
+            {
+                return t2;
+            }
+            else
+            {
+                return float.PositiveInfinity; // No positive collision time
+            }
         }
     }
 }

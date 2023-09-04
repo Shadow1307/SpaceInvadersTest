@@ -1,0 +1,12 @@
+Hits static: 0
+Hits moving: 0
+Miss: 0
+Hit ratio: 0%
+
+GC Count: 62
+GC Collected: 39,779,252 B (too high)
+Processing time: 19264 ms
+Score: 0
+Precise collision accuracy: 83.509399%
+Precise collision time: 30 ms
+Query accuracy: 100.000000%
