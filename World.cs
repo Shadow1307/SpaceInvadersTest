@@ -104,7 +104,6 @@ namespace TestingTask
         /// </summary>
         public float PreciseCollision(WorldObject a, WorldObject b)
         {
-
             // Calculate relative position and relative velocity
             Vector3 relativePosition = a.Position - b.Position;
             Vector3 relativeVelocity = a.LinearVelocity - b.LinearVelocity;
@@ -121,7 +120,7 @@ namespace TestingTask
 
             double discriminant = bCoefficient * bCoefficient - aCoefficient * cCoefficient;
 
-            if (discriminant < 0)
+            if (discriminant <= 0)
             {
                 return float.PositiveInfinity;
             }
