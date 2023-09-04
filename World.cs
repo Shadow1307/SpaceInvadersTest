@@ -77,15 +77,23 @@ namespace TestingTask
         {
             Time += deltaTime;
 
-            var arrayNeedsUpdate = m_objects.FindAll(i => i.NeedsUpdate);
-
-            for (int i = 0; i < arrayNeedsUpdate.Count; i++)
+            var count = m_objects.Count;
+            for (int i = 0; i < count; i++)
             {
-                arrayNeedsUpdate[i].Update(deltaTime);
+                var obj = m_objects[i];
+                if (obj.NeedsUpdate)
+                {
+                    obj.Update(deltaTime);
+                }
             }
-            for (int i = 0; i < arrayNeedsUpdate.Count; i++)
+
+            for (int i = 0; i < count; i++)
             {
-                arrayNeedsUpdate[i].PostUpdate();
+                var obj = m_objects[i];
+                if (obj.NeedsUpdate)
+                {
+                    obj.PostUpdate();
+                }
             }
         }
 
